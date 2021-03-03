@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "cloud-provider", path = "/provider")
+@FeignClient(name = "cloud-provider", path = "/provider/userInfo")
 public interface ProviderFeignClient {
 
     @RequestMapping("/listInfo")

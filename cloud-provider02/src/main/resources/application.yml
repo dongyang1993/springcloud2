@@ -1,5 +1,8 @@
 server:
   port: 9091
+  servlet:
+    context-path: /provider
+
 spring:
   application:
     name: cloud-provider

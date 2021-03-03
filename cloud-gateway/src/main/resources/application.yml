@@ -1,11 +1,9 @@
 server:
-  port: 9100
-  servlet:
-    context-path: /consumer
+  port: 9000
 
 spring:
   application:
-    name: cloud-consumer
+    name: cloud-gateway
   cloud:
     consul:
       host: 127.0.0.1
@@ -14,7 +12,14 @@ spring:
         register: true
         service-name: ${spring.application.name}
         prefer-ip-address: true
-#        ip-address: ${spring.cloud.client.ip-address}
+    gateway:
+      #路由规则
+      routes:
+        - id: cloud-consumer #路由ID
+          uri: http://127.0.0.1:9100/ #目标URI,到微服务的地址
+          predicates:
+            - Path=/consumer/** #将符合的路径追加到uri后面
+
 management:
   endpoints:
     web:
