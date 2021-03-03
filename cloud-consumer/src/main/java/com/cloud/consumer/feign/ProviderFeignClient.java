@@ -2,7 +2,6 @@ package com.cloud.consumer.feign;
 
 import com.cloud.common.api.Rs;
 import com.cloud.common.api.entity.UserInfo;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
