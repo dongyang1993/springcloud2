@@ -1,0 +1,20 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: cloud-consumer
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+#        ip-address: ${spring.cloud.client.ip-address}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
