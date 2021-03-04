@@ -13,6 +13,10 @@ spring:
         service-name: ${spring.application.name}
         prefer-ip-address: true
     gateway:
+      httpclient:
+        #全局超时设置
+        connect-timeout: 5000 #毫秒
+        response-timeout: 5s #java.time.Duration
       #路由规则
       routes:
         - id: cloud-consumer #路由ID
