@@ -14,7 +14,8 @@ spring:
         register: true
         service-name: ${spring.application.name}
         prefer-ip-address: true
-#        ip-address: ${spring.cloud.client.ip-address}
+        health-check-path: ${server.servlet.context-path}/actuator/health
+        #ip-address: ${spring.cloud.client.ip-address}
 management:
   endpoints:
     web:
