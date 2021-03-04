@@ -20,11 +20,17 @@ spring:
         response-timeout: 5s #java.time.Duration
       #路由规则
       routes:
-        - id: cloud-consumer #路由ID
+          #路由ID
+        - id: cloud-consumer
           #uri: http://127.0.0.1:9100/ #静态目标URI,到微服务的地址
-          uri: lb://cloud-consumer #动态目标URI,到微服务的地址
+          #动态目标URI,到微服务的地址
+          uri: lb://cloud-consumer
+          #将符合的路径追加到uri后面
           predicates:
-            - Path=/consumer/** #将符合的路径追加到uri后面
+            - Path=/consumer/**
+      discovery:
+        locator:
+          enabled: true
 
 management:
   endpoints:
