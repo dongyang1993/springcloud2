@@ -13,6 +13,7 @@ spring:
         service-name: ${spring.application.name}
         prefer-ip-address: true
         health-check-path: /actuator/health
+        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port} #默认为：${spring.application.name}-${server.port}
     gateway:
       httpclient:
         #全局超时设置
@@ -26,10 +27,10 @@ spring:
           uri: lb://cloud-consumer #动态目标URI,到微服务的地址
           #将符合的路径追加到uri后面
           predicates:
-            - Path=/consumer/**
+            - Path=/consumer/** #eg:http://localhost:9000/consumer/userinfo/listInfo?msg=xx
       discovery:
         locator:
-          enabled: true
+          enabled: true #启用动态URI访问, 通过service-name访问. 与上面的routes里面的不冲突, 两者都可以用, eg:http://localhost:9000/cloud-consumer/consumer/userinfo/listInfo?msg=xx
 
 management:
   endpoints:
