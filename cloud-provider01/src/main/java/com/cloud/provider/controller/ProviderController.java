@@ -3,6 +3,8 @@ package com.cloud.provider.controller;
 import com.cloud.common.api.Rs;
 import com.cloud.common.api.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@RefreshScope
 @Slf4j
 @RestController
 @RequestMapping("/userInfo")
 public class ProviderController {
+
+    @Value("${provider.name}")
+    private String name;
 
     @RequestMapping("listInfo")
     public Rs<List<UserInfo>> listInfo(@RequestParam("msg") String msg) {
@@ -21,7 +27,7 @@ public class ProviderController {
         List<UserInfo> list = new ArrayList<>();
         list.add(new UserInfo("Henry", "123456"));
         list.add(new UserInfo("Dell", "xps7590"));
-
+        log.info("env:{}", name);
         return Rs.ok(list, "provider01");
     }
 }

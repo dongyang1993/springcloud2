@@ -1,5 +1,6 @@
+#如果要用Consul做配置中心的话，必须用bootstrap.yml不能用application.yml
 server:
-  port: 9091
+  port: 9090
   servlet:
     context-path: /provider
 
@@ -13,10 +14,18 @@ spring:
       discovery:
         register: true
         service-name: ${spring.application.name}
-        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
         prefer-ip-address: true
         health-check-path: ${server.servlet.context-path}/actuator/health
         #ip-address: ${spring.cloud.client.ip-address}
+        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
+      config:
+        enabled: true
+        format: yaml
+        #        profile-separator: '-'
+        prefix: config
+        default-context: provider-dev
+        data-key: data
+
 management:
   endpoints:
     web:

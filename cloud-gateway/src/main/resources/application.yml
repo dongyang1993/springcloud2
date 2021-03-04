@@ -19,7 +19,7 @@ spring:
         #全局超时设置
         connect-timeout: 5000 #毫秒
         response-timeout: 5s #java.time.Duration
-      #路由规则
+      #通过路由规则转发
       routes:
           #路由ID
         - id: cloud-consumer
@@ -30,7 +30,7 @@ spring:
             - Path=/consumer/** #eg:http://localhost:9000/consumer/userinfo/listInfo?msg=xx
       discovery:
         locator:
-          enabled: true #启用动态URI访问, 通过service-name访问. 与上面的routes里面的不冲突, 两者都可以用, eg:http://localhost:9000/cloud-consumer/consumer/userinfo/listInfo?msg=xx
+          enabled: true #通过服务名转发, service-name访问. 与上面的routes里面的不冲突, 两者都可以用, eg:http://localhost:9000/cloud-consumer/consumer/userinfo/listInfo?msg=xx
           lower-case-service-id: true #使用小写服务名
 
 management:
