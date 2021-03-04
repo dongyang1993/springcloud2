@@ -23,8 +23,7 @@ spring:
           #路由ID
         - id: cloud-consumer
           #uri: http://127.0.0.1:9100/ #静态目标URI,到微服务的地址
-          #动态目标URI,到微服务的地址
-          uri: lb://cloud-consumer
+          uri: lb://cloud-consumer #动态目标URI,到微服务的地址
           #将符合的路径追加到uri后面
           predicates:
             - Path=/consumer/**
