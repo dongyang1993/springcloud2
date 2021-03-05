@@ -1,4 +1,4 @@
-#如果要用Consul做配置中心的话，必须用bootstrap.yml不能用application.yml
+#在当前版本的SpringBoot-SpringCloud中,如果要用Consul做配置中心的话，必须用bootstrap.yml不能用application.yml
 server:
   port: 9090
   servlet:

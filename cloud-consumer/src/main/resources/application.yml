@@ -16,7 +16,7 @@ spring:
         prefer-ip-address: true
         health-check-path: ${server.servlet.context-path}/actuator/health
         #register-health-check: false 禁用Health检查
-        #health-check-path: ${management.server.servlet.context-path}/actuator/health 单独的management.server端口
+        #health-check-path: ${management.server.servlet.context-path}/actuator/health
         #ip-address: ${spring.cloud.client.ip-address}
 management:
   endpoints:
