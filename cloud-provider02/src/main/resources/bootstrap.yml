@@ -1,0 +1,43 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /provider
+
+spring:
+  application:
+    name: cloud-provider
+  profiles:
+    active: dev
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        health-check-path: ${server.servlet.context-path}/actuator/health
+        #ip-address: ${spring.cloud.client.ip-address}
+#        instance-id: ${spring.application.name}-${server.port}-${random.uuid}
+        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
+      config:
+        enabled: true
+        format: yaml #文件格式
+        prefix: config/cloud-provider #consul-config配置文件基础目录（路径前缀, 可以是多级目录）
+        default-context: cloud-provider #默认文件夹名称（追加到prefix后面的路径，只能是单个目录）
+        #配置文件分隔符，会将consul K/V中的文件路径通过分隔符分割，去匹配spring.profiles.active，确定使用哪个文件
+        #等同于将default-context${config.profile-separator}${spring.profiles.active}去匹配consul中存在于config.prefix目录下的文件目录名
+        #eg: cloud-provider, cloud-provider:dev cloud-provider:prod三个配置目录  cloud-provider是默认的，都会加载，但是优先级低于cloud-provider:${spring.profiles.active}
+        #consul-config中的配置优先级都要高于jar包及其外部的本地配置文件
+        profile-separator: ':'
+        data-key: data #最终存储数据的文件名
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: always
