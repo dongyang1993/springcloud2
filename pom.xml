@@ -9,6 +9,7 @@
         <module>cloud-consumer</module>
         <module>cloud-gateway</module>
         <module>cloud-common-api</module>
+        <module>cloud-auth</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
