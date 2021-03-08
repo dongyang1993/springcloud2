@@ -2,10 +2,8 @@ package com.hd.auth.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Builder
 public class PayloadDTO {
     /**
